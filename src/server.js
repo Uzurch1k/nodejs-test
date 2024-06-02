@@ -44,4 +44,8 @@ export const startServer = () => {
   app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
   });
+
+  app.get('/students', async (req, res) => {});
+
+  app.get('/students/:studentId', async (req, res) => {});
 };
