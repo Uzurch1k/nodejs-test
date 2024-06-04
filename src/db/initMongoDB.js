@@ -6,12 +6,13 @@ import { env } from '../utils/env.js';
 
 export const initMongoDB = async () => {
   try {
-    const user = env('Uzurch1k');
-    const pwd = env('cvHgOusveH1FD2xD');
-    const url = env('cluster0.1ado6tg.mongodb.net');
-    const db = env('MONGODB_DB');
+    const MONGODB_USER = env('MONGODB_USER');
+    const MONGODB_PASSWORD = env('MONGODB_PASSWORD');
+    const MONGODB_URL = env('MONGODB_URL');
+    const MONGODB_DB = env('MONGODB_DB');
+
     await mongoose.connect(
-      `mongodb+srv://${user}:${pwd}@${url}/?retryWrites=true&w=majority`
+      `mongodb+srv://${MONGODB_USER}:${MONGODB_PASSWORD}@${MONGODB_URL}/${MONGODB_DB}?retryWrites=true&w=majority`
     );
     console.log('Mongo connection successfully established!');
   } catch (e) {
