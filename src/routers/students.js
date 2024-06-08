@@ -6,7 +6,7 @@ import {
   getStudentsController,
   getStudentByIdController,
   createStudentController,
-	deleteStudentController,
+  deleteStudentController,
 } from '../controllers/students.js';
 
 import { ctrlWrapper } from '../utils/ctrlWrapper.js';

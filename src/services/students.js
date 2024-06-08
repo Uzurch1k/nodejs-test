@@ -20,6 +20,5 @@ export const deleteStudent = async studentId => {
   const student = await StudentsCollection.findOneAndDelete({
     _id: studentId,
   });
-
   return student;
 };
