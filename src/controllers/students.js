@@ -5,6 +5,7 @@ import {
   deleteStudent,
   getAllStudents,
   getStudentById,
+  updateStudent,
 } from '../services/students.js';
 
 import createHttpError from 'http-errors';
@@ -42,6 +43,43 @@ export const createStudentController = async (req, res) => {
     status: 201,
     message: `Successfully created a student!`,
     data: student,
+  });
+};
+
+export const upsertStudentController = async (req, res, next) => {
+  const { studentId } = req.params;
+
+  const result = await updateStudent(studentId, req.body, {
+    upsert: true,
+  });
+
+  if (!result) {
+    next(createHttpError(404, 'Student not found'));
+    return;
+  }
+
+  const status = result.isNew ? 201 : 200;
+
+  res.status(status).json({
+    status,
+    message: `Successfully upserted a student!`,
+    data: result.student,
+  });
+};
+
+export const patchStudentController = async (req, res, next) => {
+  const { studentId } = req.params;
+  const result = await updateStudent(studentId, req.body);
+
+  if (!result) {
+    next(createHttpError(404, 'Student not found'));
+    return;
+  }
+
+  res.json({
+    status: 200,
+    message: `Successfully patched a student!`,
+    data: result.student,
   });
 };
 
