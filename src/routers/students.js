@@ -18,7 +18,7 @@ import {
 } from '../controllers/students.js';
 
 import { ctrlWrapper } from '../utils/ctrlWrapper.js';
-import { isValidId } from '../middlewares/isValidId.js';
+// import { isValidId } from '../middlewares/isValidId.js';
 
 const router = Router();
 
@@ -34,7 +34,7 @@ router.patch('/students/:studentId', ctrlWrapper(patchStudentController));
 
 router.delete('/students/:studentId', ctrlWrapper(deleteStudentController));
 
-router.get('/:contactId', isValidId(), ctrlWrapper(createStudentController));
+// router.get('/:contactId', isValidId(), ctrlWrapper(createStudentController));
 
 router.post(
   '/',
