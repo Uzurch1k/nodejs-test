@@ -26,18 +26,8 @@ router.get('/students', ctrlWrapper(getStudentsController));
 
 router.get('/students/:studentId', ctrlWrapper(getStudentByIdController));
 
-router.post('/students', ctrlWrapper(createStudentController));
-
-router.put('/students/:studentId', ctrlWrapper(upsertStudentController));
-
-router.patch('/students/:studentId', ctrlWrapper(patchStudentController));
-
-router.delete('/students/:studentId', ctrlWrapper(deleteStudentController));
-
-// router.get('/:contactId', isValidId(), ctrlWrapper(createStudentController));
-
 router.post(
-  '/',
+  '/students',
   validateBody(createStudentSchema),
   ctrlWrapper(createStudentController)
 );
@@ -53,5 +43,9 @@ router.patch(
   validateBody(updateStudentSchema),
   ctrlWrapper(patchStudentController)
 );
+
+router.delete('/students/:studentId', ctrlWrapper(deleteStudentController));
+
+// router.get('/:contactId', isValidId(), ctrlWrapper(createStudentController));
 
 export default router;
