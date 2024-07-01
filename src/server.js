@@ -27,7 +27,6 @@ export const startServer = () => {
     })
   );
 
-  app.use('/uploads', express.static(UPLOAD_DIR));
 
   app.use(express.json());
   app.use(cors());
@@ -35,7 +34,9 @@ export const startServer = () => {
 
   app.use(router);
 
-  app.use('*', notFoundHandler);
+	app.use('*', notFoundHandler);
+	
+  app.use('/uploads', express.static(UPLOAD_DIR));
 
   app.use(errorHandler);
 
